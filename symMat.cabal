@@ -26,6 +26,9 @@ source-repository head
 library
   exposed-modules:
       Lib
+      SymMat
+      SymMat.Factorisation
+      SymMat.Fraction
   other-modules:
       Paths_symMat
   hs-source-dirs:
