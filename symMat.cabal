@@ -34,7 +34,9 @@ library
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      QuickCheck >=2.13
+    , base >=4.7 && <5
+    , hspec >=2.7
   default-language: Haskell2010
 
 executable symMat-exe
@@ -45,7 +47,9 @@ executable symMat-exe
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      QuickCheck >=2.13
+    , base >=4.7 && <5
+    , hspec >=2.7
     , symMat
   default-language: Haskell2010
 
@@ -53,11 +57,14 @@ test-suite symMat-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      SymMat.FactorisationSpec
       Paths_symMat
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      QuickCheck >=2.13
+    , base >=4.7 && <5
+    , hspec >=2.7
     , symMat
   default-language: Haskell2010

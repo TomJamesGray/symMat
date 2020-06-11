@@ -10,8 +10,10 @@ type Primes = [Int]
 -- | Factorise an integer into it's prime factors
 factorise :: Int -> Factors
 factorise 1 = [1]
-factorise 2 = [2]
-factorise n = decompose n (primesTo n) []
+factorise 0 = [0]
+factorise n
+  | n > 0 = decompose n (primesTo n) []
+  | otherwise = (decompose (abs n) (primesTo (abs n)) []) ++ [-1]
 
 -- | Used recursively to decompose a given integer to it's prime factors
 decompose :: Int -> Primes -> [Int] -> Factors
