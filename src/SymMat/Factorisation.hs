@@ -2,6 +2,7 @@ module SymMat.Factorisation (
   factorise,
   primesTo,
   sieve,
+  decompose
 ) where
 
 type Factors = [Int]
@@ -12,11 +13,11 @@ factorise :: Int -> Factors
 factorise 1 = [1]
 factorise 0 = [0]
 factorise n
-  | n > 0 = decompose n (primesTo n) []
+  | n > 0 = decompose n (2:[3,5..n]) [] --Only do odd numbers after 2 to improve speed
   | otherwise = (decompose (abs n) (primesTo (abs n)) []) ++ [-1]
 
 -- | Used recursively to decompose a given integer to it's prime factors
-decompose :: Int -> Primes -> [Int] -> Factors
+decompose :: Int -> [Int] -> [Int] -> Factors
 decompose 1 _ currF = currF
 decompose n possF currF = let
   divisor = possF !! 0
