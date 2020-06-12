@@ -58,6 +58,7 @@ test-suite symMat-test
   main-is: Spec.hs
   other-modules:
       SymMat.FactorisationSpec
+      SymMat.FractionsSpec
       Paths_symMat
   hs-source-dirs:
       test
