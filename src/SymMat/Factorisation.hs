@@ -13,18 +13,18 @@ factorise :: Int -> Factors
 factorise 1 = [1]
 factorise 0 = [0]
 factorise n
-  | n > 0 = decompose n (2:[3,5..n]) [] --Only do odd numbers after 2 to improve speed
-  | otherwise = (decompose (abs n) (primesTo (abs n)) []) ++ [-1]
+  | n > 0 = decompose n 2 []
+  | otherwise = (decompose (abs n) 2 []) ++ [-1]
 
 -- | Used recursively to decompose a given integer to it's prime factors
-decompose :: Int -> [Int] -> [Int] -> Factors
+decompose :: Int -> Int -> [Int] -> Factors
 decompose 1 _ currF = currF
 decompose n possF currF = let
-  divisor = possF !! 0
-  rem = n `div` (possF !! 0)
-  in if (n `mod` divisor == 0) then
-    (decompose rem possF (currF ++ [divisor])) else
-      (decompose n (drop 1 $ possF) currF)
+  rem = n `div` possF
+  nextStep = if possF == 2 then 3 else possF + 2
+  in if (n `mod` possF == 0) then
+    (decompose rem possF (currF ++ [possF])) else
+      (decompose n nextStep currF)
 
 -- | Generate all primes that are all less than or equal to n
 primesTo :: Int -> Primes
