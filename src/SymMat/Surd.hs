@@ -6,11 +6,15 @@ module SymMat.Surd (
 
 import SymMat.Factorisation
 import Data.List (nub)
+import SymMat.Simplify
 
 data Surd = Surd {
   inner :: Int,
   scalar :: Int
 } deriving (Eq,Show)
+
+instance Simplifiable Surd where
+  simplify x = surdSimplify x
 
 -- | Counts the number of occurences of an element in a list
 numOccurences :: (Eq a) => a -> [a] -> Int
@@ -43,3 +47,4 @@ surdSimplify (Surd x sca) = let
                                                        in Surd newIn newSca
     ) (Surd x sca) nubFactors
   in n
+

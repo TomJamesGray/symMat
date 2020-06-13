@@ -1,6 +1,7 @@
 module SymMat.FractionsSpec (spec) where
 
 import SymMat.Fraction
+import SymMat.Simplify
 import Test.QuickCheck
 import Test.Hspec
 

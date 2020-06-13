@@ -28,6 +28,7 @@ library
       SymMat
       SymMat.Factorisation
       SymMat.Fraction
+      SymMat.Simplify
       SymMat.Surd
   other-modules:
       Paths_symMat
