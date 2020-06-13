@@ -10,7 +10,13 @@ import SymMat.Factorisation
 data Fraction = Fraction {
   numerator :: Int,
   denominator :: Int
-} deriving (Eq,Show)
+} deriving (Eq)
+
+instance Show Fraction where
+  show (Fraction num den) = let
+    chars = maximum [digits num,digits den]
+    fracLine = take chars $ cycle "-"
+    in intercalate "\n" [show num,fracLine,show den]
 
 instance Num (Fraction) where
   Fraction a b + Fraction c d = Fraction (a*d + b*c) (b*d)
@@ -19,6 +25,9 @@ instance Num (Fraction) where
   abs (Fraction a b) = Fraction (abs a) (abs b)
   signum (Fraction a b) = Fraction (signum a) (signum b)
   fromInteger i = Fraction (fromInteger i) 1
+
+digits :: (Num a,Show a) => a -> Int
+digits x = length $ show x
 
 toReal :: Fraction -> Float
 toReal (Fraction num den) = (fromIntegral num) / (fromIntegral den)
