@@ -1,7 +1,7 @@
 module SymMat.Surd (
   Surd (..),
-  simplify,
-  numOccurences
+  surdSimplify,
+  surdToReal
 ) where
 
 import SymMat.Factorisation
@@ -21,9 +21,13 @@ intPow :: Int -> Int -> Int
 intPow a x
   | x > 0 = foldl (*) 1 (take x (repeat a))
 
+-- | Computes real value of surd
+surdToReal :: Surd -> Float
+surdToReal (Surd x sca) = fromIntegral sca * (fromIntegral x) ** 0.5
+
 -- | Simplifies a surd
-simplify :: Surd -> Surd
-simplify (Surd x sca) = let
+surdSimplify :: Surd -> Surd
+surdSimplify (Surd x sca) = let
   xFactors = (factorise x) ++ [1]
   nubFactors = nub xFactors
   n = foldl (\acc fact -> let occ = numOccurences fact xFactors in
