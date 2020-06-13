@@ -4,3 +4,4 @@ module SymMat.Simplify (
 
 class Simplifiable a where
   simplify :: a -> a
+  toReal :: a -> Float

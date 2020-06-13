@@ -1,7 +1,6 @@
 module SymMat.Fraction (
   Fraction (..),
   fractionSimplify,
-  toReal
 ) where
 
 import Data.List
@@ -15,6 +14,7 @@ data Fraction = Fraction {
 
 instance Simplifiable Fraction where
   simplify x = fractionSimplify x
+  toReal x = fracToReal x
 
 instance Show Fraction where
   show (Fraction num den) = let
@@ -33,8 +33,8 @@ instance Num (Fraction) where
 digits :: (Num a,Show a) => a -> Int
 digits x = length $ show x
 
-toReal :: Fraction -> Float
-toReal (Fraction num den) = (fromIntegral num) / (fromIntegral den)
+fracToReal :: Fraction -> Float
+fracToReal (Fraction num den) = (fromIntegral num) / (fromIntegral den)
 
 -- | Simplifies a fraction
 fractionSimplify :: Fraction -> Fraction

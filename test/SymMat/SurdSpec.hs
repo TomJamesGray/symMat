@@ -17,8 +17,8 @@ marginErr = 0.0001 -- Slightly more than margin of error for fractions
 -- | Tests simplification of surd doesn't change real value
 prop_simplifyEqual :: Surd -> Bool
 prop_simplifyEqual x = let
-  valSimplified = surdToReal $ simplify $ x
-  initVal = surdToReal $ x
+  valSimplified = toReal $ simplify $ x
+  initVal = toReal $ x
   in abs(valSimplified - initVal) < marginErr
 
 spec :: Spec

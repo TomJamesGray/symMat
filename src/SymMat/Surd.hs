@@ -1,7 +1,6 @@
 module SymMat.Surd (
   Surd (..),
   surdSimplify,
-  surdToReal
 ) where
 
 import SymMat.Factorisation
@@ -15,6 +14,8 @@ data Surd = Surd {
 
 instance Simplifiable Surd where
   simplify x = surdSimplify x
+  toReal x = surdToReal x
+
 
 -- | Counts the number of occurences of an element in a list
 numOccurences :: (Eq a) => a -> [a] -> Int
